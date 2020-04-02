@@ -88,7 +88,7 @@
     const map = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");    
     
     const requestData = async function() {
-      const us = await d3.json("../datasets/us.json");    
+      const us = await d3.json("./datasets/us.json");    
       var states = topojson.feature(us, us.objects.states);
       var statesMesh = topojson.mesh(us, us.objects.states);
       var projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], states);
@@ -105,7 +105,7 @@
   
     const stateData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv");
     const countyData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv");
-    var stateIDs = await d3.tsv("../datasets/us-state-names.tsv");
+    var stateIDs = await d3.tsv("./datasets/us-state-names.tsv");
 
     var states = [];
     for(x = 0; x<stateData.length; x++){
