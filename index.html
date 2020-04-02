@@ -173,55 +173,42 @@
        .style("fill", d => colorScale( stateCounts[ idToState[d.id] ]) );
     drawLegend(d3.select("#colorLegend"), colorScale);
     
-    
-    let tooltipWidth = 100;
-    let tooltipHeight = 40;
-    let tooltip = map.append("g")
-                     .attr("class","tooltip")
-                     .attr("visibility","hidden");
-    tooltip.append("rect")
-           .attr("fill", "black")
-           .attr("opacity", 0.5)
-           .attr("width",tooltipWidth-5)
-           .attr("height",tooltipHeight)
-    let txt = tooltip.append("text")
-                     .attr("fill", "white")
-                     .attr("text-anchor","middle")
-                     .attr("alignment-baseline","hanging")
-                     .attr("x", tooltipWidth / 2.0)
-                     .attr("y", 2);
-    let txt2 = tooltip.append("text")
-                     .attr("fill", "white")
-                     .attr("text-anchor","middle")
-                     .attr("alignment-baseline","hanging")
-                     .attr("x", tooltipWidth / 2.0)
-                     .attr("y", 22);
+    let ttWidth = 100;
+    let toolTip = map.append("g").attr("class","toolTip").attr("visibility","hidden");
+    toolTip.append("rect").attr("fill", "black").attr("opacity", 0.5).attr("width",ttWidth-5).attr("height",40)
+    let state_id = toolTip.append("text").attr("fill", "white").attr("text-anchor","middle").attr("alignment-baseline","hanging").attr("x", ttWidth / 2.0).attr("y", 2);
+    let state_count = toolTip.append("text").attr("fill", "white").attr("text-anchor","middle").attr("alignment-baseline","hanging").attr("x", ttWidth / 2.0).attr("y", 22);
     
     d3.selectAll(".state").on("mouseenter", mouseEntersPlot);
     d3.selectAll(".state").on("mouseout",  mouseLeavesPlot);
 
+    //function rewritten from INFO3300 at Cornell University
     function mouseEntersPlot() {
-      tooltip.style("visibility","visible")
+      toolTip.style("visibility","visible")
       let state = d3.select(this);
       state.attr("stroke","white")
            .attr("stroke-width", 3);
-      txt.text(idToState[ state.datum().id  ]);
-      txt2.text(stateCounts[ idToState[ state.datum().id  ] ]);
-      let bounds = path.bounds( state.datum() );   // Get the pixel boundaries of the state
-      let xPos = (bounds[0][0]+bounds[1][0])/2.0 - tooltipWidth/2.0;
+      state_id.text(idToState[ state.datum().id  ]);
+      state_count.text(stateCounts[ idToState[ state.datum().id  ] ]);
+      let bounds = path.bounds( state.datum() );   
+      let xPos = (bounds[0][0]+bounds[1][0])/2.0 - ttWidth/2.0;
       let yPos = bounds[1][1];
-      tooltip.attr("transform","translate("+xPos+","+yPos+")"); 
+      toolTip.attr("transform","translate("+xPos+","+yPos+")"); 
     }
 
+    //function rewritten from INFO3300 at Cornell University
     function mouseLeavesPlot() {
-      tooltip.style("visibility","hidden");
+      toolTip.style("visibility","hidden");
       let state = d3.select(this);
       state.attr("stroke","none").attr("stroke-width", 0);
     }
     };
     requestData();
+
     </script>
     <script>
+    
+    //function modified from INFO3300 at Cornell University
     function drawLegend(legend, legendColorScale) {
       const legendWidth = legend.attr("width");
       const legendHeight = legend.attr("height");
