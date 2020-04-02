@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>CORONA EXTRA</title>
+    <title>CORONAVIRUS CASES</title>
       <script src="https://d3js.org/d3.v5.min.js"></script>
       <script src="https://d3js.org/topojson.v2.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Oswald&display=swap" rel="stylesheet">
@@ -53,8 +53,7 @@
   </head>
   <body>
   
-    <h2>CORONA CASES BY STATE</h2>
-    <h3>MADE BY BEN MAYER</h3>
+    <h2>CORONAVIRUS CASES BY STATE</h2>
     <svg id="usmap" height="380" width="600" ></svg>
     <svg id="colorLegend" height="60" width="600" ></svg>
     <p id = "date"></p>
@@ -147,7 +146,7 @@
 
     print_date_info = [all_months[data_date_month],data_date_day,2020];
     document.getElementById("date").innerHTML = "Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] + 
-      "</u></em>. Hover over states for specific counts. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
+      "</u></em>. Made by Ben Mayer using notes from INFO3300 at Cornell University. Hover over states for specific counts. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
 ;
 
     for(j = 0; j < countyData.length; j++){
